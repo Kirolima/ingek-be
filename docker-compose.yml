@@ -1,0 +1,15 @@
+services:
+  ingek-db:
+    image: postgres:16
+    container_name: ingek-backend-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ingek_user
+      POSTGRES_PASSWORD: ingek_pass
+      POSTGRES_DB: ingek_db
+    volumes:
+      - ingek_data:/var/lib/postgresql/data
+
+volumes:
+  ingek_data:
