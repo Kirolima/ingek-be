@@ -25,17 +25,17 @@ public class AppUserController {
     }
 
     @GetMapping("/{id}")
-    public AppUserResponse find(@PathVariable String id) {
+    public AppUserResponse find(@PathVariable int id) {
         return toResponse(service.get(id));
     }
 
     @PutMapping("/{id}")
-    public AppUserResponse update(@PathVariable String id, @RequestBody AppUserRequest appUser) {
+    public AppUserResponse update(@PathVariable int id, @RequestBody AppUserRequest appUser) {
         return toResponse(service.update(id, toDto(appUser)));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
+    public void delete(@PathVariable int id) {
         service.delete(id);
     }
 

@@ -17,7 +17,7 @@ public class AppUserServiceImpl implements AppUserService {
         return toDto(entity);
     }
 
-    public AppUserDto update(String id, AppUserDto user) {
+    public AppUserDto update(int id, AppUserDto user) {
         AppUser existinUser = find(id);
         existinUser.firstName = user.firstName;
         existinUser.lastName = user.lastName;
@@ -29,18 +29,18 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
 
-    public void delete(String id) {
+    public void delete(int id) {
         AppUser user = find(id);
         repository.delete(user);
     }
 
-    public AppUserDto get(String id) {
+    public AppUserDto get(int id) {
         return toDto(find(id));
     }
 
 
-    public AppUser find(String id) {
-        return repository.findById(Integer.parseInt(id)).orElse(null);
+    public AppUser find(int id) {
+        return repository.findById(id).orElse(null);
     }
 
 
