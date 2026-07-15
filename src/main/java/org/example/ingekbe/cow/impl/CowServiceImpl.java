@@ -1,7 +1,7 @@
-package org.example.ingekbe.Cow.impl;
+package org.example.ingekbe.cow.impl;
 
-import org.example.ingekbe.Cow.api.CowDto;
-import org.example.ingekbe.Cow.api.CowService;
+import org.example.ingekbe.cow.api.CowDto;
+import org.example.ingekbe.cow.api.CowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +39,7 @@ public class CowServiceImpl implements CowService {
 
 
     public Cow find(int id) {
-        return repository.findById(Integer.parseInt(id)).orElse(null);
+        return repository.findById(id).orElse(null);
     }
 
 

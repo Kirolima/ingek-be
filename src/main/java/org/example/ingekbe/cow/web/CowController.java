@@ -1,8 +1,8 @@
-package org.example.ingekbe.Cow.web;
+package org.example.ingekbe.cow.web;
 
 
-import org.example.ingekbe.Cow.api.CowDto;
-import org.example.ingekbe.Cow.api.CowService;
+import org.example.ingekbe.cow.api.CowDto;
+import org.example.ingekbe.cow.api.CowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

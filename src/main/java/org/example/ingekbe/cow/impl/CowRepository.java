@@ -1,4 +1,4 @@
-package org.example.ingekbe.Cow.impl;
+package org.example.ingekbe.cow.impl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

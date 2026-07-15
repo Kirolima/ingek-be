@@ -1,6 +1,8 @@
-package org.example.ingekbe.Cow.web;
+package org.example.ingekbe.cow.api;
 
-public class CowResponse {
+
+
+public class CowDto  {
 
     public int cowId;
     public int farmId;
@@ -47,5 +49,4 @@ public class CowResponse {
     public void setCowBreed(String cowBreed) {
         this.cowBreed = cowBreed;
     }
-
 }

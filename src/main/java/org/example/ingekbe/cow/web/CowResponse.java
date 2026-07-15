@@ -1,6 +1,6 @@
-package org.example.ingekbe.Cow.web;
+package org.example.ingekbe.cow.web;
 
-public class CowRequest {
+public class CowResponse {
 
     public int cowId;
     public int farmId;

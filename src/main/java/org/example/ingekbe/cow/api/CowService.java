@@ -1,4 +1,4 @@
-package org.example.ingekbe.Cow.api;
+package org.example.ingekbe.cow.api;
 
 public interface CowService {
 
