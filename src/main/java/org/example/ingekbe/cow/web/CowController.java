@@ -22,15 +22,15 @@ public class CowController {
     }
 
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public CowResponse find(@PathVariable int id) { return toResponse(service.get(id)); }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public CowResponse update(@PathVariable int id,@RequestBody CowRequest cowRequest) {
         return toResponse(service.update(id, toDto(cowRequest)));
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {service.delete(id);}
 
 
