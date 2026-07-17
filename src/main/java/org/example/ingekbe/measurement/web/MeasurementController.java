@@ -41,6 +41,7 @@ public class MeasurementController {
         response.setNumberOfLegMovements(dto.getNumberOfLegMovements());
         response.setLegLiftDuration(dto.getLegLiftDuration());
         response.setStandardDeviation(dto.getStandardDeviation());
+        response.setRiskScore(dto.getRiskSccore());
         return response;
     }
 
@@ -56,6 +57,7 @@ public class MeasurementController {
         dto.setLegLiftDuration(request.getLegLiftDuration());
         dto.setNumberOfLegMovements(request.getNumberOfLegMovements());
         dto.setWeight(request.getWeight());
+        dto.setRiskSccore(request.getRiskScore());
         return dto;
     }
 }

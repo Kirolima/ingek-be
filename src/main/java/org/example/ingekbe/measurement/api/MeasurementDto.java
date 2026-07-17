@@ -14,6 +14,7 @@ public class MeasurementDto {
     public int numberOfLegMovements;
     public int asymmetryIndex;
     public Date measurementDate;
+    public int riskSccore;
 
     public int getMeasurementId() {
         return measurementId;
@@ -94,4 +95,13 @@ public class MeasurementDto {
     public void setMeasurementDate(Date measurementDate) {
         this.measurementDate = measurementDate;
     }
+
+    public int getRiskSccore() {
+        return riskSccore;
+    }
+
+    public void setRiskSccore(int riskSccore) {
+        this.riskSccore = riskSccore;
+    }
 }
+

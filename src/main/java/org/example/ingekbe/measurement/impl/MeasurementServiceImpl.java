@@ -29,7 +29,7 @@ public class MeasurementServiceImpl implements MeasurementService{
         existin.lwr = measurementDto.lwr;
         existin.standardDeviation = measurementDto.standardDeviation;
         existin.numberOfLegMovements = measurementDto.numberOfLegMovements;
-        existin.asymmetryIndex = measurementDto.asymmetryIndex;
+        existin.riskScore = measurementDto.riskSccore;
         return toDto(existin);
     }
 
@@ -58,6 +58,7 @@ public class MeasurementServiceImpl implements MeasurementService{
         dto.numberOfLegMovements = measurement.numberOfLegMovements;
         dto.standardDeviation = measurement.standardDeviation;
         dto.measurementDate =measurement.measurementDate;
+        dto.riskSccore = measurement.riskScore;
         return dto;
     }
 
@@ -72,7 +73,7 @@ public class MeasurementServiceImpl implements MeasurementService{
         entitiy.weight = dto.weight;
         entitiy.asymmetryIndex = dto.asymmetryIndex;
         entitiy.legLiftDuration = dto.legLiftDuration;
-        entitiy.measurementDate = dto.measurementDate;
+        entitiy.riskScore = dto.riskSccore;
         return entitiy;
     }
 }

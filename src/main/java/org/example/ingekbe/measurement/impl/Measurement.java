@@ -22,4 +22,5 @@ public class Measurement {
     public int numberOfLegMovements;
     public int asymmetryIndex;
     public Date measurementDate;
+    public int riskScore;
 }
