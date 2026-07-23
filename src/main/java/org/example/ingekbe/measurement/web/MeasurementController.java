@@ -6,7 +6,7 @@ import org.example.ingekbe.measurement.api.MeasurementDto;
 import org.example.ingekbe.measurement.api.MeasurementService;
 
 @RestController
-@RequestMapping("measturement")
+@RequestMapping("measurement")
 public class MeasurementController {
 
     @Autowired
@@ -41,7 +41,7 @@ public class MeasurementController {
         response.setNumberOfLegMovements(dto.getNumberOfLegMovements());
         response.setLegLiftDuration(dto.getLegLiftDuration());
         response.setStandardDeviation(dto.getStandardDeviation());
-        response.setRiskScore(dto.getRiskSccore());
+        response.setRiskScore(dto.getRiskScore());
         return response;
     }
 
@@ -52,12 +52,12 @@ public class MeasurementController {
         dto.setAsymmetryIndex(request.getAsymmetryIndex());
         dto.setUnitId(request.getUnitId());
         dto.setLegLiftDuration(request.getLegLiftDuration());
+        dto.setLwr(request.getLwr());
         dto.setStandardDeviation(request.getStandardDeviation());
         dto.setMeasurementDate(request.getMeasurementDate());
-        dto.setLegLiftDuration(request.getLegLiftDuration());
         dto.setNumberOfLegMovements(request.getNumberOfLegMovements());
         dto.setWeight(request.getWeight());
-        dto.setRiskSccore(request.getRiskScore());
+        dto.setRiskScore(request.getRiskScore());
         return dto;
     }
 }
