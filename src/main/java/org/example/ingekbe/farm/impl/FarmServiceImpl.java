@@ -1,5 +1,7 @@
 package org.example.ingekbe.farm.impl;
 
+import org.example.ingekbe.appUser.impl.AppUser;
+import org.example.ingekbe.appUser.impl.AppUserRepository;
 import org.example.ingekbe.farm.api.FarmDto;
 import org.example.ingekbe.farm.api.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +13,24 @@ public class FarmServiceImpl implements FarmService{
     @Autowired
     FarmRepository repository;
 
+    @Autowired
+    AppUserRepository appUserRepository;
+
     public FarmDto save(FarmDto farm) {
 
-        Farm entity = repository.save(toEntity(farm));
+        AppUser appUser = findAppUser(farm.appUserId);
+        Farm entity = repository.save(toEntity(farm, appUser));
         return toDto(entity);
     }
 
     public FarmDto update(int id, FarmDto farm) {
         Farm existinFarm = find(id);
-        existinFarm.appUserId = farm.appUserId;
+        existinFarm.appUser = findAppUser(farm.appUserId);
         existinFarm.farmName = farm.farmName;
         existinFarm.cowOfNumber = farm.cowOfNumber;
         existinFarm.numberOfUnits = farm.numberOfUnits;
         existinFarm.location = farm.location;
+        existinFarm = repository.save(existinFarm);
         return toDto(existinFarm);
     }
 
@@ -36,7 +43,11 @@ public class FarmServiceImpl implements FarmService{
 
 
     public Farm find(int id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Farm not found: " + id));
+    }
+
+    private AppUser findAppUser(int id) {
+        return appUserRepository.findById(id).orElseThrow(() -> new RuntimeException("AppUser not found: " + id));
     }
 
 
@@ -44,7 +55,7 @@ public class FarmServiceImpl implements FarmService{
 
         FarmDto dto = new FarmDto();
         dto.farmId = farm.farmId;
-        dto.appUserId = farm.appUserId;
+        dto.appUserId = farm.appUser.appUserId;
         dto.farmName = farm.farmName;
         dto.cowOfNumber = farm.cowOfNumber;
         dto.location = farm.location;
@@ -52,10 +63,10 @@ public class FarmServiceImpl implements FarmService{
         return dto;
     }
 
-    public static Farm toEntity(FarmDto dto) {
+    public static Farm toEntity(FarmDto dto, AppUser appUser) {
 
         Farm entity = new Farm();
-        entity.appUserId = dto.appUserId;
+        entity.appUser = appUser;
         entity.farmName = dto.farmName;
         entity.cowOfNumber = dto.cowOfNumber;
         entity.location =dto.location;
