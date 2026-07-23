@@ -12,6 +12,7 @@ public class AppUserDto {
     public String job;
 
 
+
     public int getAppUserId() {
         return appUserId;
     }
