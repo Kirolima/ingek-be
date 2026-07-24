@@ -3,8 +3,12 @@ package org.example.ingekbe.appUser.web;
 
 import org.example.ingekbe.appUser.api.AppUserDto;
 import org.example.ingekbe.appUser.api.AppUserService;
+import org.example.ingekbe.farm.api.FarmDto;
+import org.example.ingekbe.farm.web.FarmResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("app-users")
@@ -45,9 +49,24 @@ public class AppUserController {
         response.setAppUserId(dto.getAppUserId());
         response.setFirstName(dto.getFirstName());
         response.setLastName(dto.getLastName());
-        response.setPassword(dto.getPassword());
+        // response.setPassword(dto.getPassword());  //dişari şifre dönülmez
         response.setEmail(dto.getEmail());
         response.setJob(dto.getJob());
+
+        if (dto.getFarms() != null) {
+            response.setFarms(dto.getFarms().stream()
+                    .map(this::toFarmResponse)
+                    .collect(Collectors.toList()));
+        }
+        return response;
+    }
+
+    public FarmResponse toFarmResponse(FarmDto dto) {
+        FarmResponse response = new FarmResponse();
+        response.setFarmId(dto.getFarmId());
+        response.setFarmName(dto.getFarmName());
+        response.setLocation(dto.getLocation());
+        response.setAppUserId(dto.getAppUserId());
         return response;
     }
 

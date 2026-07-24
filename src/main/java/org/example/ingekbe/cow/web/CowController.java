@@ -3,12 +3,17 @@ package org.example.ingekbe.cow.web;
 
 import org.example.ingekbe.cow.api.CowDto;
 import org.example.ingekbe.cow.api.CowService;
+import org.example.ingekbe.measurement.api.MeasurementDto;
+import org.example.ingekbe.measurement.impl.MeasurementServiceImpl;
+import org.example.ingekbe.measurement.web.MeasurementResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Collectors;
+
 
 @RestController
-@RequestMapping("cow")
+@RequestMapping( "cows")
 
 public class CowController {
 
@@ -41,6 +46,26 @@ public class CowController {
         response.setEarTagNumber(dto.getEarTagNumber());
         response.setAge(dto.getAge());
         response.setCowBreed(dto.getCowBreed());
+        if (dto.measurements != null) {
+            response.setMeasurements(dto.measurements.stream()
+                    .map(this::toMeasurementResponse)
+                    .collect(Collectors.toList()));
+        }
+        return response;
+    }
+
+
+    public MeasurementResponse toMeasurementResponse(MeasurementDto dto) {
+        MeasurementResponse response = new MeasurementResponse();
+        response.setMeasurementId(dto.getMeasurementId());
+        response.setWeight(dto.getWeight());
+        response.setStandardDeviation(dto.getStandardDeviation());
+        response.setLwr(dto.getLwr());
+        response.setLegLiftDuration(dto.getLegLiftDuration());
+        response.setNumberOfLegMovements(dto.getNumberOfLegMovements());
+        response.setAsymmetryIndex(dto.getAsymmetryIndex());
+        response.setMeasurementDate(dto.getMeasurementDate());
+        response.setRiskScore(dto.getRiskScore());
         return response;
     }
 

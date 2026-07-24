@@ -5,8 +5,6 @@ import java.util.Date;
 public class MeasurementDto {
 
     public int measurementId;
-    public int cowId;
-    public int unitId;
     public int weight;
     public int standardDeviation;
     public int lwr;
@@ -15,6 +13,8 @@ public class MeasurementDto {
     public int asymmetryIndex;
     public Date measurementDate;
     public int riskScore;
+    public int cowId;
+    public int unitId;
 
     public int getMeasurementId() {
         return measurementId;

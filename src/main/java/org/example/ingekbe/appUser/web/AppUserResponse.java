@@ -1,15 +1,21 @@
 package org.example.ingekbe.appUser.web;
 
 
-public class AppUserResponse {
+import org.example.ingekbe.farm.api.FarmDto;
+import org.example.ingekbe.farm.web.FarmResponse;
 
-    public int appUserId;
-    public String firstName;
-    public String lastName;
-    public String job;
-    public String email;
-    public String password;
+import java.util.List;
 
+    public class AppUserResponse {
+
+        public int appUserId;
+        public String firstName;
+        public String lastName;
+        public String job;
+        public String email;
+        // public String password;
+
+        public List<FarmResponse> farms;
 
     public int getAppUserId() {
         return appUserId;
@@ -51,11 +57,12 @@ public class AppUserResponse {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+
+    public List<FarmResponse> getFarms() {
+        return farms;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFarms(List<FarmResponse> farms) {
+        this.farms = farms;
     }
 }

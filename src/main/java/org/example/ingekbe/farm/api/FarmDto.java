@@ -1,13 +1,21 @@
 package org.example.ingekbe.farm.api;
 
+import org.example.ingekbe.cow.api.CowDto;
+import org.example.ingekbe.unit.api.UnitDto;
+
+
+import java.util.List;
+
 public class FarmDto {
 
     public int farmId;
-    public int appUserId;
     public String farmName;
-    public int numberOfUnits;
     public String location;
-    public int cowOfNumber;
+    public int appUserId;
+
+    public List<CowDto> cows;
+
+    public List<UnitDto> units;
 
     public int getFarmId() {
         return farmId;
@@ -15,14 +23,6 @@ public class FarmDto {
 
     public void setFarmId(int farmId) {
         this.farmId = farmId;
-    }
-
-    public int getAppUserId() {
-        return appUserId;
-    }
-
-    public void setAppUserId(int appUserId) {
-        this.appUserId = appUserId;
     }
 
     public String getFarmName() {
@@ -33,14 +33,6 @@ public class FarmDto {
         this.farmName = farmName;
     }
 
-    public int getNumberOfUnits() {
-        return numberOfUnits;
-    }
-
-    public void setNumberOfUnits(int numberOfUnits) {
-        this.numberOfUnits = numberOfUnits;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -49,11 +41,27 @@ public class FarmDto {
         this.location = location;
     }
 
-    public int getCowOfNumber() {
-        return cowOfNumber;
+    public int getAppUserId() {
+        return appUserId;
     }
 
-    public void setCowOfNumber(int cowOfNumber) {
-        this.cowOfNumber = cowOfNumber;
+    public void setAppUserId(int appUserId) {
+        this.appUserId = appUserId;
+    }
+
+    public List<CowDto> getCows() {
+        return cows;
+    }
+
+    public void setCows(List<CowDto> cows) {
+        this.cows = cows;
+    }
+
+    public List<UnitDto> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<UnitDto> units) {
+        this.units = units;
     }
 }

@@ -6,7 +6,7 @@ import org.example.ingekbe.measurement.api.MeasurementDto;
 import org.example.ingekbe.measurement.api.MeasurementService;
 
 @RestController
-@RequestMapping("measurement")
+    @RequestMapping("measurements")
 public class MeasurementController {
 
     @Autowired
@@ -32,15 +32,15 @@ public class MeasurementController {
     public MeasurementResponse toResponse(MeasurementDto dto) {
         MeasurementResponse response = new MeasurementResponse();
         response.setMeasurementId(dto.getMeasurementId());
+        response.setCowId(dto.getCowId());
         response.setUnitId(dto.getUnitId());
+        response.setWeight(dto.getWeight());
+        response.setStandardDeviation(dto.getStandardDeviation());
         response.setLwr(dto.getLwr());
+        response.setLegLiftDuration(dto.getLegLiftDuration());
+        response.setNumberOfLegMovements(dto.getNumberOfLegMovements());
         response.setAsymmetryIndex(dto.getAsymmetryIndex());
         response.setMeasurementDate(dto.getMeasurementDate());
-        response.setWeight(dto.getWeight());
-        response.setCowId(dto.getCowId());
-        response.setNumberOfLegMovements(dto.getNumberOfLegMovements());
-        response.setLegLiftDuration(dto.getLegLiftDuration());
-        response.setStandardDeviation(dto.getStandardDeviation());
         response.setRiskScore(dto.getRiskScore());
         return response;
     }
@@ -49,15 +49,15 @@ public class MeasurementController {
         MeasurementDto dto = new MeasurementDto();
         dto.setMeasurementId(request.getMeasurementId());
         dto.setCowId(request.getCowId());
-        dto.setAsymmetryIndex(request.getAsymmetryIndex());
         dto.setUnitId(request.getUnitId());
-        dto.setLegLiftDuration(request.getLegLiftDuration());
-        dto.setLwr(request.getLwr());
-        dto.setStandardDeviation(request.getStandardDeviation());
-        dto.setMeasurementDate(request.getMeasurementDate());
-        dto.setNumberOfLegMovements(request.getNumberOfLegMovements());
         dto.setWeight(request.getWeight());
-        dto.setRiskScore(request.getRiskScore());
+        dto.setStandardDeviation(request.getStandardDeviation());
+        dto.setLwr(request.getLwr());
+        dto.setLegLiftDuration(request.getLegLiftDuration());
+        dto.setNumberOfLegMovements(request.getNumberOfLegMovements());
+        dto.setAsymmetryIndex(request.getAsymmetryIndex());
+        dto.setMeasurementDate(request.getMeasurementDate());
+        dto.setRiskScore(request.getRiskScore());;
         return dto;
     }
 }

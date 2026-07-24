@@ -2,8 +2,11 @@ package org.example.ingekbe.appUser.impl;
 
 import org.example.ingekbe.appUser.api.AppUserDto;
 import org.example.ingekbe.appUser.api.AppUserService;
+import org.example.ingekbe.farm.impl.FarmServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 public class AppUserServiceImpl implements AppUserService {
@@ -52,6 +55,11 @@ public class AppUserServiceImpl implements AppUserService {
         dto.email   = appUser.email;
         dto.password = appUser.password;
         dto.job = appUser.job;
+        if (appUser.farms != null) {
+            dto.farms = appUser.farms.stream()
+                    .map(FarmServiceImpl::toDto)
+                    .collect(Collectors.toList());
+        }
         return dto;
     }
 

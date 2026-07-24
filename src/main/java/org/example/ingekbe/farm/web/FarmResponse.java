@@ -1,13 +1,23 @@
 package org.example.ingekbe.farm.web;
 
+import org.example.ingekbe.cow.api.CowDto;
+import org.example.ingekbe.cow.impl.Cow;
+import org.example.ingekbe.cow.web.CowResponse;
+import org.example.ingekbe.unit.api.UnitDto;
+import org.example.ingekbe.unit.impl.Unit;
+import org.example.ingekbe.unit.web.UnitResponse;
+
+import java.util.List;
+
 public class FarmResponse {
 
     public int farmId;
     public int appUserId;
     public String farmName;
-    public int numberOfUnits;
     public String location;
-    public int cowOfNumber;
+
+    public List<CowResponse> cows;
+    public List<UnitResponse> units;
 
     public int getFarmId() {
         return farmId;
@@ -33,14 +43,6 @@ public class FarmResponse {
         this.farmName = farmName;
     }
 
-    public int getNumberOfUnits() {
-        return numberOfUnits;
-    }
-
-    public void setNumberOfUnits(int numberOfUnits) {
-        this.numberOfUnits = numberOfUnits;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -49,11 +51,19 @@ public class FarmResponse {
         this.location = location;
     }
 
-    public int getCowOfNumber() {
-        return cowOfNumber;
+    public List<CowResponse> getCows() {
+        return cows;
     }
 
-    public void setCowOfNumber(int cowOfNumber) {
-        this.cowOfNumber = cowOfNumber;
+    public void setCows(List<CowResponse> cows) {
+        this.cows = cows;
+    }
+
+    public List<UnitResponse> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<UnitResponse> units) {
+        this.units = units;
     }
 }
