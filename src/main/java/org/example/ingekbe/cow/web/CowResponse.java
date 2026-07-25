@@ -1,5 +1,10 @@
 package org.example.ingekbe.cow.web;
 
+import org.example.ingekbe.measurement.impl.Measurement;
+import org.example.ingekbe.measurement.web.MeasurementResponse;
+
+import java.util.List;
+
 public class CowResponse {
 
     public int cowId;
@@ -7,6 +12,8 @@ public class CowResponse {
     public String earTagNumber;
     public int age;
     public String cowBreed;
+
+    public List<MeasurementResponse> measurements;
 
     public int getCowId() {
         return cowId;
@@ -48,4 +55,11 @@ public class CowResponse {
         this.cowBreed = cowBreed;
     }
 
+    public List<MeasurementResponse> getMeasurements() {
+        return measurements;
+    }
+
+    public void setMeasurements(List<MeasurementResponse> measurements) {
+        this.measurements = measurements;
+    }
 }

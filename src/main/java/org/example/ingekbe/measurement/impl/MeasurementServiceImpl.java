@@ -1,5 +1,6 @@
 package org.example.ingekbe.measurement.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.ingekbe.cow.impl.Cow;
 import org.example.ingekbe.cow.impl.CowRepository;
 import org.example.ingekbe.measurement.api.MeasurementDto;
@@ -21,13 +22,15 @@ public class MeasurementServiceImpl implements MeasurementService{
     @Autowired
     UnitRepository unitRepository;
 
+
+    @Transactional
     public MeasurementDto save(MeasurementDto measurementDto) {
         Cow cow = findCow(measurementDto.cowId);
         Unit unit = findUnit(measurementDto.unitId);
         Measurement entity = repository.save(toEntity(measurementDto, cow, unit));
         return toDto(entity);
     }
-
+    @Transactional
     public MeasurementDto update(int id, MeasurementDto measurementDto) {
         Measurement existin = find(id);
         existin.cow = findCow(measurementDto.cowId);
@@ -48,51 +51,60 @@ public class MeasurementServiceImpl implements MeasurementService{
         Measurement measurement = find(id);
         repository.delete(measurement);
     }
-
+    @Transactional
     public MeasurementDto get(int id) {return toDto(find(id));}
 
+    @Transactional
     public Measurement find(int id) {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Measurement not found: " + id));
     }
 
-    private Cow findCow(int id) {
+    public Cow findCow(int id) {
         return cowRepository.findById(id).orElseThrow(() -> new RuntimeException("Cow not found: " + id));
     }
 
-    private Unit findUnit(int id) {
+    public Unit findUnit(int id) {
         return unitRepository.findById(id).orElseThrow(() -> new RuntimeException("Unit not found: " + id));
     }
 
 
-
     public static MeasurementDto toDto(Measurement measurement) {
+        if (measurement == null) return null;
+
         MeasurementDto dto = new MeasurementDto();
-        dto.measurementId = measurement.measurementId;
-        dto.cowId = measurement.cow.cowId;
-        dto.unitId = measurement.unit.unitId;
-        dto.weight = measurement.weight;
-        dto.lwr = measurement.lwr;
-        dto.asymmetryIndex = measurement.asymmetryIndex;
-        dto.legLiftDuration = measurement.legLiftDuration;
-        dto.numberOfLegMovements = measurement.numberOfLegMovements;
-        dto.standardDeviation = measurement.standardDeviation;
-        dto.measurementDate =measurement.measurementDate;
-        dto.riskScore = measurement.riskScore;
+        dto.setMeasurementId(measurement.getMeasurementId());
+
+        if (measurement.getCow() != null) {
+            dto.setCowId(measurement.getCow().getCowId());
+        }
+        if (measurement.getUnit() != null) {
+            dto.setUnitId(measurement.getUnit().getUnitId());
+        }
+        dto.setWeight(measurement.getWeight());
+        dto.setLwr(measurement.getLwr());
+        dto.setAsymmetryIndex(measurement.getAsymmetryIndex());
+        dto.setLegLiftDuration(measurement.getLegLiftDuration());
+        dto.setNumberOfLegMovements(measurement.getNumberOfLegMovements());
+        dto.setStandardDeviation(measurement.getStandardDeviation());
+        dto.setMeasurementDate(measurement.getMeasurementDate());
+        dto.setRiskScore(measurement.getRiskScore());
         return dto;
     }
 
     public static Measurement toEntity(MeasurementDto dto, Cow cow, Unit unit) {
-        Measurement entitiy = new Measurement();
-        entitiy.cow = cow;
-        entitiy.unit = unit;
-        entitiy.lwr = dto.lwr;
-        entitiy.standardDeviation = dto.standardDeviation;
-        entitiy.numberOfLegMovements = dto.numberOfLegMovements;
-        entitiy.weight = dto.weight;
-        entitiy.asymmetryIndex = dto.asymmetryIndex;
-        entitiy.legLiftDuration = dto.legLiftDuration;
-        entitiy.measurementDate = dto.measurementDate;
-        entitiy.riskScore = dto.riskScore;
-        return entitiy;
+        if (dto == null) return null;
+
+        Measurement entity = new Measurement();
+        entity.setCow(cow);
+        entity.setUnit(unit);
+        entity.setLwr(dto.getLwr());
+        entity.setStandardDeviation(dto.getStandardDeviation());
+        entity.setNumberOfLegMovements(dto.getNumberOfLegMovements());
+        entity.setWeight(dto.getWeight());
+        entity.setAsymmetryIndex(dto.getAsymmetryIndex());
+        entity.setLegLiftDuration(dto.getLegLiftDuration());
+        entity.setMeasurementDate(dto.getMeasurementDate());
+        entity.setRiskScore(dto.getRiskScore());
+        return entity;
     }
 }

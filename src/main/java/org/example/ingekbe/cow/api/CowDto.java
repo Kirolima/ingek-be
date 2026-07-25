@@ -1,6 +1,9 @@
 package org.example.ingekbe.cow.api;
 
 
+import org.example.ingekbe.measurement.api.MeasurementDto;
+
+import java.util.List;
 
 public class CowDto  {
 
@@ -9,6 +12,8 @@ public class CowDto  {
     public String earTagNumber;
     public int age;
     public String cowBreed;
+
+    public List<MeasurementDto> measurements;
 
     public int getCowId() {
         return cowId;
@@ -48,5 +53,13 @@ public class CowDto  {
 
     public void setCowBreed(String cowBreed) {
         this.cowBreed = cowBreed;
+    }
+
+    public List<MeasurementDto> getMeasurements() {
+        return measurements;
+    }
+
+    public void setMeasurements(List<MeasurementDto> measurements) {
+        this.measurements = measurements;
     }
 }

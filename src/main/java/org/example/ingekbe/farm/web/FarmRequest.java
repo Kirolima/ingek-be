@@ -5,9 +5,7 @@ public class FarmRequest {
     public int farmId;
     public int appUserId;
     public String farmName;
-    public int numberOfUnits;
     public String location;
-    public int cowOfNumber;
 
     public int getFarmId() {
         return farmId;
@@ -33,27 +31,11 @@ public class FarmRequest {
         this.farmName = farmName;
     }
 
-    public int getNumberOfUnits() {
-        return numberOfUnits;
-    }
-
-    public void setNumberOfUnits(int numberOfUnits) {
-        this.numberOfUnits = numberOfUnits;
-    }
-
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public int getCowOfNumber() {
-        return cowOfNumber;
-    }
-
-    public void setCowOfNumber(int cowOfNumber) {
-        this.cowOfNumber = cowOfNumber;
     }
 }
