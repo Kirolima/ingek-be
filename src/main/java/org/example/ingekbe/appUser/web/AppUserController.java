@@ -49,7 +49,7 @@ public class AppUserController {
         response.setAppUserId(dto.getAppUserId());
         response.setFirstName(dto.getFirstName());
         response.setLastName(dto.getLastName());
-        // response.setPassword(dto.getPassword());  //dişari şifre dönülmez
+        response.setPassword(dto.getPassword());  //dişari şifre dönülmez
         response.setEmail(dto.getEmail());
         response.setJob(dto.getJob());
 
@@ -78,6 +78,7 @@ public class AppUserController {
         dto.setPassword(request.getPassword());
         dto.setEmail(request.getEmail());
         dto.setJob(request.getJob());
+        dto.setPassword(request.getPassword());
         return dto;
     }
 
