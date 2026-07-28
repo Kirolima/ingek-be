@@ -1,5 +1,6 @@
 package org.example.ingekbe.appUser.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.ingekbe.appUser.api.AppUserDto;
 import org.example.ingekbe.appUser.api.AppUserService;
 import org.example.ingekbe.farm.impl.FarmServiceImpl;
@@ -15,11 +16,13 @@ public class AppUserServiceImpl implements AppUserService {
     AppUserRepository repository;
 
 
+    @Transactional
     public AppUserDto save(AppUserDto appUser) {
         AppUser entity = repository.save(toEntity(appUser));
         return toDto(entity);
     }
 
+    @Transactional
     public AppUserDto update(int id, AppUserDto user) {
         AppUser existinUser = find(id);
         existinUser.firstName = user.firstName;
@@ -37,10 +40,12 @@ public class AppUserServiceImpl implements AppUserService {
         repository.delete(user);
     }
 
+    @Transactional
     public AppUserDto get(int id) {
         return toDto(find(id));
     }
 
+    @Transactional
     public AppUserDto findByEmail(String email) {
         AppUser appUser = repository.findByEmail(email).orElse(null);
         if (appUser == null) {
