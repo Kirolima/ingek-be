@@ -47,7 +47,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Transactional
     public AppUserDto findByEmail(String email) {
-        AppUser appUser = repository.findByEmail(email).orElse(null);
+        AppUser appUser = repository.findFirstByEmail(email).orElse(null);
         if (appUser == null) {
             return null;
         }
