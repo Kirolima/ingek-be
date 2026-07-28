@@ -28,6 +28,21 @@ public class AppUserController {
         return toResponse(dto);
     }
 
+    @PostMapping("/login")
+    public AppUserResponse login(@RequestBody AppUserRequest loginRequest) {
+        // Servis katmanından kullanıcının girdiği email'e göre o kişiyi buluyoruz
+        AppUserDto user = service.findByEmail(loginRequest.getEmail());
+        
+        // Kullanıcı veritabanında varsa VE şifresi eşleşiyorsa içeri al!
+        if (user != null && user.getPassword() != null && user.getPassword().equals(loginRequest.getPassword())) {
+            return toResponse(user); // Başarılı girişte temiz model döner
+        } else {
+            // Şifre yanlışsa veya email yoksa API hata fırlatır
+            throw new RuntimeException("Hatalı e-posta veya şifre!"); 
+        }
+    }
+
+
     @GetMapping("/{id}")
     public AppUserResponse find(@PathVariable int id) {
         return toResponse(service.get(id));

@@ -41,11 +41,17 @@ public class AppUserServiceImpl implements AppUserService {
         return toDto(find(id));
     }
 
+    public AppUserDto findByEmail(String email) {
+        AppUser appUser = repository.findByEmail(email).orElse(null);
+        if (appUser == null) {
+            return null;
+        }
+        return toDto(appUser);
+    }
 
     public AppUser find(int id) {
         return repository.findById(id).orElse(null);
     }
-
 
     public static AppUserDto toDto(AppUser appUser) {
         AppUserDto dto = new AppUserDto();
