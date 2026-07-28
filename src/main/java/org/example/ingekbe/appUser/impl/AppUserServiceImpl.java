@@ -7,6 +7,7 @@ import org.example.ingekbe.farm.impl.FarmServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,6 +44,12 @@ public class AppUserServiceImpl implements AppUserService {
     @Transactional
     public AppUserDto get(int id) {
         return toDto(find(id));
+    }
+
+    public List<AppUserDto> getAll() {
+        return repository.findAll().stream()
+                .map(AppUserServiceImpl::toDto)
+                .toList();
     }
 
     @Transactional

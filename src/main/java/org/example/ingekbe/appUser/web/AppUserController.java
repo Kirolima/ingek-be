@@ -8,6 +8,7 @@ import org.example.ingekbe.farm.web.FarmResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -55,6 +56,11 @@ public class AppUserController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
         service.delete(id);
+    }
+
+    @GetMapping()
+    public List<AppUserDto> getAll() {
+        return service.getAll();
     }
 
 

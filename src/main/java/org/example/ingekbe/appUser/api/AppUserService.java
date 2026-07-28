@@ -1,5 +1,7 @@
 package org.example.ingekbe.appUser.api;
 
+import java.util.List;
+
 public interface AppUserService {
 
     public AppUserDto save(AppUserDto appUser);
@@ -7,6 +9,7 @@ public interface AppUserService {
     public void delete(int id);
     public AppUserDto get(int id);
     public AppUserDto findByEmail(String email);
+    public List<AppUserDto> getAll();
 
 }
 
