@@ -68,7 +68,16 @@ public class AppUserServiceImpl implements AppUserService {
         dto.job = appUser.job;
         if (appUser.farms != null) {
             dto.farms = appUser.farms.stream()
-                    .map(FarmServiceImpl::toDto)
+                    .map(farm -> {
+                        org.example.ingekbe.farm.api.FarmDto fDto = new org.example.ingekbe.farm.api.FarmDto();
+                        fDto.setFarmId(farm.getFarmId());
+                        fDto.setFarmName(farm.getFarmName());
+                        fDto.setLocation(farm.getLocation());
+                        if (farm.getAppUser() != null) {
+                            fDto.setAppUserId(farm.getAppUser().getAppUserId());
+                        }
+                        return fDto;
+                    })
                     .collect(Collectors.toList());
         }
         return dto;
